@@ -50,3 +50,7 @@ Route::get('/laporan/trs/excel', [LaporanController::class, 'transaksiExcel']);
 Route::get('/laporan/buku', [LaporanController::class, 'buku']);
 Route::get('/laporan/buku/pdf', [LaporanController::class, 'bukuPdf']);
 Route::get('/laporan/buku/excel', [LaporanController::class, 'bukuExcel']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

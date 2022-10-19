@@ -33,21 +33,11 @@
                     <table class="table table-striped" id="table">
                       <thead>
                         <tr>
-                          <th>
-                            Nama
-                          </th>
-                          <th>
-                            NPM
-                          </th>
-                          <th>
-                            Prodi
-                          </th>
-                          <th>
-                            Jenis Kelamin
-                          </th>
-                          <th>
-                            Action
-                          </th>
+                          <th>Nama</th>
+                          <th>NPM</th>
+                          <th>Prodi</th>
+                          <th>Jenis Kelamin</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -86,7 +76,12 @@
                             Action
                           </button>
                           <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
+                            
+                            <!-- HAPUS KOMEN KODE DIBAWAH UNTUK MENERAPKAN ENCRYPT PADA ID DI URL -->
+                            <!-- <a class="dropdown-item" href="{{route('anggota.edit', Crypt::encrypt($data->id))}}"> Edit </a> -->
+                            
                             <a class="dropdown-item" href="{{route('anggota.edit', $data->id)}}"> Edit </a>
+                            
                             <form action="{{ route('anggota.destroy', $data->id) }}" class="pull-left"  method="post">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}

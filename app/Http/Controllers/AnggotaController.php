@@ -6,6 +6,7 @@ use App\Models\Anggota;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -108,12 +109,20 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {   
+        // -- HAPUS KOMEN KODE BERIKUT UNTUK MENERAPKAN ENKRIPSI PADA ID DI URL --
+        // $getId = Crypt::decrypt($id);
+        // if((Auth::user()->level == 'user') && (Auth::user()->id != $getId)) {
+        //         Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //         return redirect()->to('/');
+        // }
+        // $data = Anggota::findOrFail($getId);
+        
         if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
                 Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
                 return redirect()->to('/');
         }
-
         $data = Anggota::findOrFail($id);
+
         $users = User::get();
         return view('anggota.edit', compact('data', 'users'));
     }

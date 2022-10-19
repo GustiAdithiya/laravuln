@@ -6,6 +6,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -63,12 +64,16 @@ class UserController extends Controller
             return redirect()->to('user');
         }
 
-        $this->validate($request, [
+        // validasi inputan yang akan masuk 
+        /*$this->validate($request, [
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        */
+        
 
 
         if($request->file('gambar') == '') {
@@ -87,9 +92,18 @@ class UserController extends Controller
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'level' => $request->input('level'),
-            'password' => bcrypt(($request->input('password'))),
+            // Penggunaan enkripsi password yang benar 
+             'password' => bcrypt(($request->input('password'))),
+
+             // Penggunaan enkripsi password yang kurang tepat dan memungkinkan terjadi peretasan data
+            //'password' => md5(($request->input('password'))),
+
+            // tidak menerapkan  enkripsi berpotensi besar data akan diretas
+            //'password' => $request->input('password'),
             'gambar' => $gambar
         ]);
+
+        
 
         Session::flash('message', 'Berhasil ditambahkan!');
         Session::flash('message_type', 'success');
@@ -181,14 +195,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         if(Auth::user()->id != $id) {
-            $user_data = User::findOrFail($id);
-            $user_data->delete();
+            // query menggunakan bawaan framework
+            // $user_data = User::findOrFail($id);
+            // $user_data->delete();
+
+            // delete data dengan menggunakan query sql
+            DB::delete('delete from users where id = ' . $id);
             Session::flash('message', 'Berhasil dihapus!');
-            Session::flash('message_type', 'success');
+            Session::flash('message_type', 'success'); 
         } else {
             Session::flash('message', 'Akun anda sendiri tidak bisa dihapus!');
             Session::flash('message_type', 'danger');
         }
+
+        
         return redirect()->to('user');
     }
 }
