@@ -38,6 +38,18 @@ class UsersTableSeeder extends Seeder
               'remember_token'	=> NULL,
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
+            ],
+            [
+              'id'  			=> 3,
+              'name'  			=> 'Gilacoding - Contoh',
+              'username'		=> 'contoh123',
+              'email' 			=> '2022@gilacoding.com',
+              'password'		=> md5('contoh123'),
+              'gambar'			=> NULL,
+              'level'			=> 'admin',
+              'remember_token'	=> NULL,
+              'created_at'      => \Carbon\Carbon::now(),
+              'updated_at'      => \Carbon\Carbon::now()
             ]
         ]);
     }

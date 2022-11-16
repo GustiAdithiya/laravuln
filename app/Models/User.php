@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username','gambar', 'level'
+        'name', 'email', 'password', 'username', 'gambar', 'level'
     ];
 
     /**
@@ -32,6 +33,6 @@ class User extends Authenticatable
 
     public function anggota()
     {
-       return $this->hasOne(Anggota::class);
+        return $this->hasOne(Anggota::class);
     }
 }

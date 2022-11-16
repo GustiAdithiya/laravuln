@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da9251e6dbf6bbc9db2d6415992401ef",
+    "content-hash": "a8ff38fc6b918ef5b9e7a80e087f0412",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1536,16 +1536,16 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v4.0.2",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "9aa6930c8ae98b2465594d7f14f4ac131bfd6a99"
+                "reference": "f2f879e9f0947a1ede12b0ff7446ce4e249479cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/9aa6930c8ae98b2465594d7f14f4ac131bfd6a99",
-                "reference": "9aa6930c8ae98b2465594d7f14f4ac131bfd6a99",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/f2f879e9f0947a1ede12b0ff7446ce4e249479cd",
+                "reference": "f2f879e9f0947a1ede12b0ff7446ce4e249479cd",
                 "shasum": ""
             },
             "require": {
@@ -1591,9 +1591,9 @@
                 "ui"
             ],
             "support": {
-                "source": "https://github.com/laravel/ui/tree/v4.0.2"
+                "source": "https://github.com/laravel/ui/tree/v4.1.0"
             },
-            "time": "2022-09-09T18:20:35+00:00"
+            "time": "2022-11-15T14:36:57+00:00"
         },
         {
             "name": "league/commonmark",
@@ -1932,16 +1932,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.1.43",
+            "version": "3.1.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SpartnerNL/Laravel-Excel.git",
-                "reference": "3c5b95478fb6f76b9a6ab527d54afbb3afbda611"
+                "reference": "289c3320982510dacfe0dd00de68061a2b7f4a43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SpartnerNL/Laravel-Excel/zipball/3c5b95478fb6f76b9a6ab527d54afbb3afbda611",
-                "reference": "3c5b95478fb6f76b9a6ab527d54afbb3afbda611",
+                "url": "https://api.github.com/repos/SpartnerNL/Laravel-Excel/zipball/289c3320982510dacfe0dd00de68061a2b7f4a43",
+                "reference": "289c3320982510dacfe0dd00de68061a2b7f4a43",
                 "shasum": ""
             },
             "require": {
@@ -1995,7 +1995,7 @@
             ],
             "support": {
                 "issues": "https://github.com/SpartnerNL/Laravel-Excel/issues",
-                "source": "https://github.com/SpartnerNL/Laravel-Excel/tree/3.1.43"
+                "source": "https://github.com/SpartnerNL/Laravel-Excel/tree/3.1.44"
             },
             "funding": [
                 {
@@ -2007,7 +2007,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-03T11:50:29+00:00"
+            "time": "2022-10-14T20:01:10+00:00"
         },
         {
             "name": "maennchen/zipstream-php",

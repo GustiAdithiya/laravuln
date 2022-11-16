@@ -12,7 +12,7 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.0",
+        "laravel/ui": "^4.1",
         "maatwebsite/excel": "^3.1",
         "psr/simple-cache": "2.0",
         "realrashid/sweet-alert": "^5.1"

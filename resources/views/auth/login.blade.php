@@ -34,14 +34,14 @@
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"">
                   <label class="label">Username</label>
                   <div class="input-group">
-                    <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                    <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
                       </span>
                     </div>
                   </div>
-                    @if ($errors->has('email'))
+                    @if ($errors->has('username'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
