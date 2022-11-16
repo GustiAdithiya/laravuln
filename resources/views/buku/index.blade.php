@@ -84,7 +84,7 @@
                           </td>
                           <td>
                           
-                            {{$data->isbn}}
+                            {!!$data->isbn!!}
                           
                           </td>
 

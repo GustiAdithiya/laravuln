@@ -62,10 +62,15 @@ var check = function() {
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ $data->username }}" required readonly="">
+
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">                            
+                            <label for="username" class="col-md-4 control-label">Username</label>                            
+                            {{-- <div class="col-md-6"> 
+                            <div class="div bg-secondary" style="height:30px; border-radius: 5px;">
+                                <p class="text-muted" style="margin-left: 10px; padding-top:5px">{{$data->username}}</p>
+                            </div> --}}
+                            {{-- AKTIFKAN KODINGAN UNTUK MELIHAT READONLY LINE 73-78 DAN KOMENT LINE 69-71 --}}
+                                <input id="username" type="text" class="form-control" name="username" value="{{ $data->username }}" required readonly>
                                 @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
@@ -77,12 +82,17 @@ var check = function() {
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $data->email }}" required readonly="">
+                                <div class="div bg-secondary" style="height:30px; border-radius: 5px;">
+                                    <p class="text-muted" style="margin-left: 10px; padding-top:5px">{{$data->email}}</p>
+                                </div>
+                                
+                                {{-- AKTIFKAN KODINGAN UNTUK MELIHAT READONLY LINE 90-95 DAN KOMENT LINE 85-87 --}}
+                                {{-- <input id="email" type="email" class="form-control" name="email" value="{{ $data->email }}" required readonly="">
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
 

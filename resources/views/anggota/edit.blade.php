@@ -17,6 +17,10 @@ $(document).ready(function() {
         {{ csrf_field() }}
         {{ method_field('put') }}
 <div class="row">
+    @php
+echo $brilian;
+// echo $data->nama;
+@endphp
             <div class="col-md-12 d-flex align-items-stretch grid-margin">
               <div class="row flex-grow">
                 <div class="col-12">

@@ -35,6 +35,7 @@ Route::post('/user-register', 'UserController@store');
 Route::get('/user-edit/{id}', 'UserController@edit');
 */
 Route::resource('user', UserController::class);
+Route::get('/search', [UserController::class, 'search'])->name('search');
 
 Route::resource('anggota', AnggotaController::class);
 

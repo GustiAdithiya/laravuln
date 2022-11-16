@@ -11,9 +11,26 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- sini --}}
+<form class="form" action="{{ route('search') }}">
+  
+  <div class="form-group w-100 mb-3">
+      <label for="search" class="d-block mr-2">Pencarian</label>
+      <input type="text" name="search" class="form-control w-75 d-inline" id="search" placeholder="Masukkan keyword">
+      <button type="submit" class="btn btn-primary mb-1">Cari</button>
+  </div>
+</form>
+
+{{-- KOMEN LINE 25-26 UNTUK MEMBUAT SEARCH YANG BENAR --}}
+{{-- @php
+    echo $datas;
+@endphp --}}
+
+<br><br>
 <div class="row">
 
-  <div class="col-lg-2">
+{{-- end   --}}
+<div class="col-lg-2">
     <a href="{{ route('user.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah User</a>
   </div>
     <div class="col-lg-12">
@@ -24,7 +41,7 @@
 </div>
 <div class="row" style="margin-top: 20px;">
 <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
+              <div class="card">  
 
                 <div class="card-body">
                   <h4 class="card-title">Data User</h4>
@@ -51,6 +68,7 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {{-- HILANGKAN KOMEN PADA LINE 72-114 UNTUK MEMBUAT SEARCH YANG BENAR --}}
                       @foreach($datas as $data)
                         <tr>
                           <td class="py-1">
@@ -58,7 +76,6 @@
                             <img src="{{url('images/user', $data->gambar)}}" alt="image" style="margin-right: 10px;" />
                           @else
                             <img src="{{url('images/user/default.png')}}" alt="image" style="margin-right: 10px;" />
-
                           @endif
 
 

@@ -34,6 +34,7 @@ $(document).ready(function() {
                                 @endif
                             </div>
                         </div>
+                        
                         <div class="form-group{{ $errors->has('npm') ? ' has-error' : '' }}">
                             <label for="npm" class="col-md-4 control-label">NPM</label>
                             <div class="col-md-6">
@@ -45,7 +46,9 @@ $(document).ready(function() {
                                 @endif
                             </div>
                         </div>
+
                         <div class="form-group{{ $errors->has('tempat_lahir') ? ' has-error' : '' }}">
+                            
                             <label for="tempat_lahir" class="col-md-4 control-label">Tempat Lahir</label>
                             <div class="col-md-6">
                                 <input id="tempat_lahir" type="text" class="form-control" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required>

@@ -78,7 +78,7 @@
                           <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
                             
                             <!-- HAPUS KOMEN KODE DIBAWAH UNTUK MENERAPKAN ENCRYPT PADA ID DI URL -->
-                            <!-- <a class="dropdown-item" href="{{route('anggota.edit', Crypt::encrypt($data->id))}}"> Edit </a> -->
+                            {{-- <a class="dropdown-item" href="{{route('anggota.edit', Crypt::encrypt($data->id))}}"> Edit </a> --}}
                             
                             <a class="dropdown-item" href="{{route('anggota.edit', $data->id)}}"> Edit </a>
                             

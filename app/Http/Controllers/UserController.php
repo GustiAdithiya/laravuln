@@ -23,6 +23,17 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        //HILANGKAN KOMEN LINE 30 DAN UNTUK SEARCH YANG BENAR
+        $datas = User::where('name', 'like', "%" . $keyword . "%")->paginate(5);
+        
+        //KOMENTAR LINE 33 UNTUK SEARCH YANG SALAH
+        // $datas = $keyword;
+        return view('auth.user', compact('datas'));
+    }
+
     public function index()
     {
         if(Auth::user()->level == 'user') {
@@ -69,7 +80,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         */
@@ -93,10 +104,10 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'level' => $request->input('level'),
             // Penggunaan enkripsi password yang benar 
-             'password' => bcrypt(($request->input('password'))),
+            //  'password' => bcrypt(($request->input('password'))),
 
              // Penggunaan enkripsi password yang kurang tepat dan memungkinkan terjadi peretasan data
-            //'password' => md5(($request->input('password'))),
+            'password' => md5(($request->input('password'))),
 
             // tidak menerapkan  enkripsi berpotensi besar data akan diretas
             //'password' => $request->input('password'),
@@ -137,10 +148,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {   
-        if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
-        }
 
         $data = User::findOrFail($id);
 
@@ -169,7 +176,9 @@ class UserController extends Controller
         }
 
         $user_data->name = $request->input('name');
-        $user_data->email = $request->input('email');
+        //HILANGKAN KOMENTAR UNTUK PENYIMPANAN FIELD USERNAME DAN EMAIL
+        // $user_data->username = $request->input('username');
+        // $user_data->email = $request->input('email');
         if($request->input('password')) {
         $user_data->level = $request->input('level');
         }
