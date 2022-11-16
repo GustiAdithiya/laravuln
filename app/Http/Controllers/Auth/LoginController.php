@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -39,15 +42,39 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    protected function credentials(Request $request)
-    {
-        $field = filter_var($request->get($this->username()), FILTER_VALIDATE_EMAIL)
-            ? $this->username()
-            : 'username';
+    // public function login(Request $request)
+    // {
+    //     $request->validate([
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //     ]);
+    //     // $result = DB::select(DB::raw("select * from users where username = '".$request->username."' and password = '".$request->password."'"));
+    //     if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+    //     // if ($result != null) {
+    //         $request->session()->regenerate();
+    //         return redirect()->intended('/');
+    //     }
 
-        return [
-            $field => $request->get($this->username()),
-            'password' => $request->password,
-        ];
+    //     return back()->withErrors([
+    //         'password' => 'Wrong username or password',
+    //     ]);
+    // }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+        $user = User::where('username', $request->username)->where('password', md5($request->password))->first();
+        // $result = DB::select(DB::raw("select * from users where username = '".$request->username."' and password = '".md5($request->password)."'"));
+        if ($user) {
+            Auth::login($user);
+            return redirect()->intended('/');
+        }
+
+        return back()->withErrors([
+            'password' => 'Wrong username or password',
+        ]);
     }
 }
