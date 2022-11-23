@@ -1,9 +1,10 @@
 Aplikasi Sistem Keamanan
 
 Instalation
+- PHP minimal versi 8
 - composer update
 - jika terjadi error
-  composer install --ignore-platform-reqs
+- composer install --ignore-platform-reqs
 - php artisan key:generate
 - Buat DB sesuai dengan .env
 - php artisan migrate 
