@@ -40,6 +40,9 @@
 <div class="col-lg-2">
     <a href="{{ route('user.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah User</a>
   </div>
+
+  <button id="myBtn" onclick="myFunction()" class="btn btn-primary">Click</button>
+
     <div class="col-lg-12">
                   @if (Session::has('message'))
                   <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">{{ Session::get('message') }}</div>
@@ -126,4 +129,14 @@
               </div>
             </div>
           </div>
+          <script>
+            const btn = document.getElementById("myBtn")
+
+function myFunction() {
+  btn.disabled = true;
+  setTimeout(()=>{
+    btn.disabled = false;
+    console.log('Button Activated')}, 5000)
+}
+          </script>
 @endsection

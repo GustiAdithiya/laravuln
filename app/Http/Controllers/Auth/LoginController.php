@@ -42,34 +42,16 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // public function login(Request $request)
-    // {
-    //     $request->validate([
-    //         'username' => 'required',
-    //         'password' => 'required',
-    //     ]);
-    //     // $result = DB::select(DB::raw("select * from users where username = '".$request->username."' and password = '".$request->password."'"));
-    //     if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-    //     // if ($result != null) {
-    //         $request->session()->regenerate();
-    //         return redirect()->intended('/');
-    //     }
-
-    //     return back()->withErrors([
-    //         'password' => 'Wrong username or password',
-    //     ]);
-    // }
-
     public function login(Request $request)
     {
         $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
-        $user = User::where('username', $request->username)->where('password', md5($request->password))->first();
-        // $result = DB::select(DB::raw("select * from users where username = '".$request->username."' and password = '".md5($request->password)."'"));
-        if ($user) {
-            Auth::login($user);
+        // $result = DB::select(DB::raw("select * from users where username = '".$request->username."' and password = '".$request->password."'"));
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        // if ($result != null) {
+            $request->session()->regenerate();
             return redirect()->intended('/');
         }
 
@@ -77,4 +59,22 @@ class LoginController extends Controller
             'password' => 'Wrong username or password',
         ]);
     }
+
+    // public function login(Request $request)
+    // {
+    //     $request->validate([
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //     ]);
+    //     $user = User::where('username', $request->username)->where('password', md5($request->password))->first();
+    //     // $result = DB::select(DB::raw("select * from users where username = '".$request->username."' and password = '".md5($request->password)."'"));
+    //     if ($user) {
+    //         Auth::login($user);
+    //         return redirect()->intended('/');
+    //     }
+
+    //     return back()->withErrors([
+    //         'password' => 'Wrong username or password',
+    //     ]);
+    // }
 }
