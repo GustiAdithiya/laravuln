@@ -12,6 +12,12 @@ Instalation
 - php artisan optimize (optional)
 - php artisan serve
 
+
+Account : 
+- username : admin123
+- password : admin123
+
+
 Task :
 validasi login ✓
 penambahan hasil pencarian script ✓
