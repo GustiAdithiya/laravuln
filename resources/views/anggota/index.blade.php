@@ -6,7 +6,7 @@
     });
 
 } );
-</script>
+</script> 
 @stop
 @extends('layouts.app')
 

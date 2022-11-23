@@ -11,7 +11,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- sini --}}
+{{-- sini --}} 
 <form class="form" action="{{ route('search') }}">
   
   <div class="form-group w-100 mb-3">
@@ -20,6 +20,13 @@
       <button type="submit" class="btn btn-primary mb-1">Cari</button>
   </div>
 </form>
+@if($keyword != "")
+<h3>Pencarian : {{$keyword}}</h3>
+<!-- code yang salah -->
+<!-- <h3>Pencarian : {!!$keyword!!}</h3> -->
+@else
+
+@endif
 
 {{-- KOMEN LINE 25-26 UNTUK MEMBUAT SEARCH YANG BENAR --}}
 {{-- @php

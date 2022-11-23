@@ -24,7 +24,7 @@ class BukuController extends Controller
 
     public function index()
     {
-        if(Auth::user()->level == 'user') {
+        if (Auth::user()->level == 'user') {
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
         }
@@ -40,7 +40,7 @@ class BukuController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->level == 'user') {
+        if (Auth::user()->level == 'user') {
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
         }
@@ -51,11 +51,11 @@ class BukuController extends Controller
     public function format()
     {
         $data = [['judul' => null, 'isbn' => null, 'pengarang' => null, 'penerbit' => null, 'tahun_terbit' => null, 'jumlah_buku' => null, 'deskripsi' => null, 'lokasi' => 'rak1/rak2/rak3']];
-            $fileName = 'format-buku';
-            
+        $fileName = 'format-buku';
 
-        $export = Excel::create($fileName.date('Y-m-d_H-i-s'), function($excel) use($data){
-            $excel->sheet('buku', function($sheet) use($data) {
+
+        $export = Excel::create($fileName . date('Y-m-d_H-i-s'), function ($excel) use ($data) {
+            $excel->sheet('buku', function ($sheet) use ($data) {
                 $sheet->fromArray($data);
             });
         });
@@ -72,29 +72,29 @@ class BukuController extends Controller
         if ($request->hasFile('importBuku')) {
             $path = $request->file('importBuku')->getRealPath();
 
-            $data = Excel::load($path, function($reader){})->get();
+            $data = Excel::load($path, function ($reader) {
+            })->get();
             $a = collect($data);
 
             if (!empty($a) && $a->count()) {
                 foreach ($a as $key => $value) {
                     $insert[] = [
-                            'judul' => $value->judul, 
-                            'isbn' => $value->isbn, 
-                            'pengarang' => $value->pengarang, 
-                            'penerbit' => $value->penerbit,
-                            'tahun_terbit' => $value->tahun_terbit, 
-                            'jumlah_buku' => $value->jumlah_buku, 
-                            'deskripsi' => $value->deskripsi, 
-                            'lokasi' => $value->lokasi,
-                            'cover' => NULL];
+                        'judul' => $value->judul,
+                        'isbn' => $value->isbn,
+                        'pengarang' => $value->pengarang,
+                        'penerbit' => $value->penerbit,
+                        'tahun_terbit' => $value->tahun_terbit,
+                        'jumlah_buku' => $value->jumlah_buku,
+                        'deskripsi' => $value->deskripsi,
+                        'lokasi' => $value->lokasi,
+                        'cover' => NULL
+                    ];
 
                     Buku::create($insert[$key]);
-                        
-                    }
-                  
+                }
             };
         }
-        alert()->success('Berhasil.','Data telah diimport!');
+        alert()->success('Berhasil.', 'Data telah diimport!');
         return back();
     }
 
@@ -111,11 +111,11 @@ class BukuController extends Controller
             'isbn' => 'required|string'
         ]);
 
-        if($request->file('cover')) {
+        if ($request->file('cover')) {
             $file = $request->file('cover');
             $dt = Carbon::now();
             $acak  = $file->getClientOriginalExtension();
-            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
+            $fileName = rand(11111, 99999) . '-' . $dt->format('Y-m-d-H-i-s') . '.' . $acak;
             $request->file('cover')->move("images/buku", $fileName);
             $cover = $fileName;
         } else {
@@ -123,21 +123,20 @@ class BukuController extends Controller
         }
 
         Buku::create([
-                'judul' => $request->get('judul'),
-                'isbn' => $request->get('isbn'),
-                'pengarang' => $request->get('pengarang'),
-                'penerbit' => $request->get('penerbit'),
-                'tahun_terbit' => $request->get('tahun_terbit'),
-                'jumlah_buku' => $request->get('jumlah_buku'),
-                'deskripsi' => $request->get('deskripsi'),
-                'lokasi' => $request->get('lokasi'),
-                'cover' => $cover
-            ]);
+            'judul' => $request->get('judul'),
+            'isbn' => $request->get('isbn'),
+            'pengarang' => $request->get('pengarang'),
+            'penerbit' => $request->get('penerbit'),
+            'tahun_terbit' => $request->get('tahun_terbit'),
+            'jumlah_buku' => $request->get('jumlah_buku'),
+            'deskripsi' => $request->get('deskripsi'),
+            'lokasi' => $request->get('lokasi'),
+            'cover' => $cover
+        ]);
 
-        alert()->success('Berhasil.','Data telah ditambahkan!');
+        alert()->success('Berhasil.', 'Data telah ditambahkan!');
 
         return redirect()->route('buku.index');
-
     }
 
     /**
@@ -148,9 +147,9 @@ class BukuController extends Controller
      */
     public function show($id)
     {
-        if(Auth::user()->level == 'user') {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
+        if (Auth::user()->level == 'user') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
         }
 
         $data = Buku::findOrFail($id);
@@ -165,10 +164,10 @@ class BukuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
-        if(Auth::user()->level == 'user') {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
+    {
+        if (Auth::user()->level == 'user') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
         }
 
         $data = Buku::findOrFail($id);
@@ -184,11 +183,11 @@ class BukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->file('cover')) {
+        if ($request->file('cover')) {
             $file = $request->file('cover');
             $dt = Carbon::now();
             $acak  = $file->getClientOriginalExtension();
-            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
+            $fileName = rand(11111, 99999) . '-' . $dt->format('Y-m-d-H-i-s') . '.' . $acak;
             $request->file('cover')->move("images/buku", $fileName);
             $cover = $fileName;
         } else {
@@ -196,18 +195,18 @@ class BukuController extends Controller
         }
 
         Buku::find($id)->update([
-             'judul' => $request->get('judul'),
-                'isbn' => $request->get('isbn'),
-                'pengarang' => $request->get('pengarang'),
-                'penerbit' => $request->get('penerbit'),
-                'tahun_terbit' => $request->get('tahun_terbit'),
-                'jumlah_buku' => $request->get('jumlah_buku'),
-                'deskripsi' => $request->get('deskripsi'),
-                'lokasi' => $request->get('lokasi'),
-                'cover' => $cover
-                ]);
+            'judul' => $request->get('judul'),
+            'isbn' => $request->get('isbn'),
+            'pengarang' => $request->get('pengarang'),
+            'penerbit' => $request->get('penerbit'),
+            'tahun_terbit' => $request->get('tahun_terbit'),
+            'jumlah_buku' => $request->get('jumlah_buku'),
+            'deskripsi' => $request->get('deskripsi'),
+            'lokasi' => $request->get('lokasi'),
+            'cover' => $cover
+        ]);
 
-        alert()->success('Berhasil.','Data telah diubah!');
+        alert()->success('Berhasil.', 'Data telah diubah!');
         return redirect()->route('buku.index');
     }
 
@@ -220,7 +219,7 @@ class BukuController extends Controller
     public function destroy($id)
     {
         Buku::find($id)->delete();
-        alert()->success('Berhasil.','Data telah dihapus!');
+        alert()->success('Berhasil.', 'Data telah dihapus!');
         return redirect()->route('buku.index');
     }
 }

@@ -25,13 +25,15 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
+        // hilangkan komentar untuk menambahkan htmlspecialchars
+        //$keyword = htmlspecialchars($request->search);
         $keyword = $request->search;
         //HILANGKAN KOMEN LINE 30 DAN UNTUK SEARCH YANG BENAR
         $datas = User::where('name', 'like', "%" . $keyword . "%")->paginate(5);
         
         //KOMENTAR LINE 33 UNTUK SEARCH YANG SALAH
         // $datas = $keyword;
-        return view('auth.user', compact('datas'));
+        return view('auth.user', compact('datas','keyword'));
     }
 
     public function index()
@@ -40,9 +42,10 @@ class UserController extends Controller
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
         }
+        $keyword = "";
 
         $datas = User::get();
-        return view('auth.user', compact('datas'));
+        return view('auth.user', compact('datas','keyword'));
     }
 
     /**
@@ -75,7 +78,7 @@ class UserController extends Controller
             return redirect()->to('user');
         }
 
-        // validasi inputan yang akan masuk 
+        // validasi input yang benar
         /*$this->validate($request, [
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:20|unique:users',
@@ -84,6 +87,15 @@ class UserController extends Controller
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         */
+
+        // validasi input yang salah
+        $this->validate($request, [
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'gambar' => 'required',
+        ]);
         
 
 
