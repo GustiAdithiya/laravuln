@@ -5,7 +5,7 @@ Instalation
 - jika terjadi error
   composer install --ignore-platform-reqs
 - php artisan key:generate
-- Buat DB sesuai dengan .env
+- Buat DB sesuai dengan .env (dengan nama "laravel")
 - php artisan migrate 
 - php artisan db:seed
 - php artisan optimize (optional)
