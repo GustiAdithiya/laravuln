@@ -78,17 +78,21 @@ class UserController extends Controller
             return redirect()->to('user');
         }
 
-        // validasi input yang benar
-        /*$this->validate($request, [
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:20|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        */
-
-        // validasi input yang salah
+        // UNCOMMENT CODE DIBAWAH UNTUK MENGGUNAKAN VALIDASI YANG BENAR
+        // COMMENT CODE VALIDASI YANG SALAH
+        /* -- VALIDASI INPUT YANG BENAR -- */
+        // $this->validate($request, [
+        //     'name' => 'required|string|max:255',
+        //     'username' => 'required|string|max:20|unique:users',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => 'required|string|min:8|confirmed',
+        //     'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        /* ------------------------------ */
+        
+        // UNCOMMENT CODE DIBAWAH UNTUK MENGGUNAKAN VALIDASI YANG SALAH
+        // COMMENT CODE VALIDASI YANG BENAR
+        /* -- VALIDASI INPUT YANG SALAH -- */
         $this->validate($request, [
             'name' => 'required',
             'username' => 'required',
@@ -96,7 +100,7 @@ class UserController extends Controller
             'password' => 'required',
             'gambar' => 'required',
         ]);
-        
+        /* -------------------------------- */
 
 
         if($request->file('gambar') == '') {
@@ -115,14 +119,18 @@ class UserController extends Controller
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'level' => $request->input('level'),
-            // Penggunaan enkripsi password yang benar 
+
+            /* PENGGUNAAN HASH BCRYPT */
             //  'password' => bcrypt(($request->input('password'))),
+            /* ---------------------- */
 
-             // Penggunaan enkripsi password yang kurang tepat dan memungkinkan terjadi peretasan data
+            /* PENGGUNAAN HASH MD5 */
             'password' => md5(($request->input('password'))),
+            /* ------------------- */
 
-            // tidak menerapkan  enkripsi berpotensi besar data akan diretas
+            /* TIDAK MENGGUNAKAN HASH */
             //'password' => $request->input('password'),
+            /* ---------------------- */
             'gambar' => $gambar
         ]);
 

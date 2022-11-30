@@ -21,9 +21,9 @@
   </div>
 </form>
 @if($keyword != "")
-<h3>Pencarian : {{$keyword}}</h3>
+<!-- <h3>Pencarian : {{$keyword}}</h3> -->
 <!-- code yang salah -->
-<!-- <h3>Pencarian : {!!$keyword!!}</h3> -->
+<h3>Pencarian : {!! $keyword !!}</h3>
 @else
 
 @endif
@@ -86,7 +86,7 @@
                           @endif
 
 
-                            {{$data->name}}
+                            {!! $data->name !!}
                           </td>
                           <td>
                           <a href="{{route('user.show', $data->id)}}"> 
