@@ -1,0 +1,28 @@
+#wrapper {
+    text-align:center;
+    border:1px solid #7F7F7F;
+    width:150px;
+    margin:25px auto;
+    padding:25px;
+    background-color:#E3E4E4;
+}
+
+#myTimer {
+    font:64px Tahoma bold;
+    padding:20px;
+    display:block;
+}
+
+.btnEnable {
+    background-color:#E6F9D2;
+    border:1px solid #97DE4C;
+    color:#232323;
+    cursor:pointer;
+}
+
+.btnDisable {
+    background-color:#FCBABA;
+    border:1px solid #DD3939;
+    color:#232323;
+    cursor:wait;
+}
