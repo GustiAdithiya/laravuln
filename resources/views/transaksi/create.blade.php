@@ -50,7 +50,12 @@
                          <div class="form-group{{ $errors->has('tgl_pinjam') ? ' has-error' : '' }}">
                             <label for="tgl_pinjam" class="col-md-4 control-label">Tanggal Pinjam</label>
                             <div class="col-md-3">
-                                <input id="tgl_pinjam" type="date" class="form-control" name="tgl_pinjam" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" required @if(Auth::user()->level == 'user') readonly @endif>
+                                <input id="tgl_pinjam" type="date" class="form-control" name="tgl_pinjam" value="{{ $now }}" required @if(Auth::user()->level == 'user') readonly @endif>
+                                
+                              {{-- AKTIFKAN COMMENT UNTUK TANGGAL YANG DAPAT DIRUBAH PADA INSPECT ELEMENT 1 (4 LANGKAH) --}}
+                                {{-- <input id="tgl_pinjam" type="date" class="form-control" name="tgl_pinjam" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" required @if(Auth::user()->level == 'user') readonly @endif> --}}
+                              
+                              
                                 @if ($errors->has('tgl_pinjam'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('tgl_pinjam') }}</strong>
@@ -61,7 +66,12 @@
                          <div class="form-group{{ $errors->has('tgl_kembali') ? ' has-error' : '' }}">
                             <label for="tgl_kembali" class="col-md-4 control-label">Tanggal Kembali</label>
                             <div class="col-md-3">
-                                <input id="tgl_kembali" type="date"  class="form-control" name="tgl_kembali" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->addDays(5)->toDateString())) }}" required="" @if(Auth::user()->level == 'user') readonly @endif>
+                                <input id="tgl_kembali" type="date"  class="form-control" name="tgl_kembali" value="{{ $back }}" required="" @if(Auth::user()->level == 'user') readonly @endif>
+                                
+                                {{-- AKTIFKAN COMMENT UNTUK TANGGAL YANG DAPAT DIRUBAH PADA INSPECT ELEMENT 2 --}}
+                                {{-- <input id="tgl_kembali" type="date"  class="form-control" name="tgl_kembali" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->addDays(5)->toDateString())) }}" required="" @if(Auth::user()->level == 'user') readonly @endif> --}}
+                                
+                                
                                 @if ($errors->has('tgl_kembali'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('tgl_kembali') }}</strong>

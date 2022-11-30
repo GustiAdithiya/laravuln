@@ -98,7 +98,7 @@
                           <form action="{{ route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             {{ method_field('put') }}
-                            <button class="dropdown-item" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali
+                            <button class="dropdown-item" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Kembalikan
                             </button>
                           </form>
                           @endif
@@ -111,16 +111,18 @@
                           </div>
                         </div>
                         @else
-                        @if($data->status == 'pinjam')
-                        <form action="{{ route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            {{ method_field('put') }}
-                            <button class="btn btn-info btn-xs" onclick="return confirm('Anda yakin data ini sudah kembali?')">Sudah Kembali
-                            </button>
-                          </form>
+                        
+                       
+                        <form action="{{ route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data"> 
+                          {{ csrf_field() }}
+                          {{ method_field('put') }}
+                          @if($data->status == 'pinjam')                      
+                                <button class="btn btn-info btn-xs" onclick="return confirm('Anda yakin data ini sudah kembali?')">Kembalikan
+                                </button>
                           @else
-                          -
+                          <button class="btn btn-primary btn-xs" disabled>Sudah Kembali</button>
                           @endif
+                        </form>
                         @endif
                           </td>
                         </tr>
