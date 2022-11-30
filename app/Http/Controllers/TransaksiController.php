@@ -6,6 +6,7 @@ use App\Models\Anggota;
 use App\Models\Buku;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -39,9 +40,21 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   
+     public function getDateNow(){
+            return date('Y-m-d', strtotime(Carbon::today()->toDateString()));
+        }
+    public function getDateBack(){
+        return date('Y-m-d', strtotime(Carbon::today()->addDays(5)->toDateString()));
+    }
+
+    
     public function create()
     {
-        
+        //
+        $now = $this->getDateNow();
+        $back = $this->getDateBack();
+
         $getRow = Transaksi::orderBy('id', 'DESC')->get();
         $rowCount = $getRow->count();
         
@@ -65,7 +78,11 @@ class TransaksiController extends Controller
 
         $bukus = Buku::where('jumlah_buku', '>', 0)->get();
         $anggotas = Anggota::get();
-        return view('transaksi.create', compact('bukus', 'kode', 'anggotas'));
+
+        //  AKTIFKAN COMMENT UNTUK TANGGAL YANG DAPAT DIRUBAH PADA INSPECT ELEMENT 3
+        // return view('transaksi.create', compact('bukus', 'kode', 'anggotas'));
+        
+        return view('transaksi.create', compact('bukus', 'kode', 'anggotas','now', 'back'));
     }
 
     /**
@@ -87,8 +104,15 @@ class TransaksiController extends Controller
 
         $transaksi = Transaksi::create([
                 'kode_transaksi' => $request->get('kode_transaksi'),
-                'tgl_pinjam' => $request->get('tgl_pinjam'),
-                'tgl_kembali' => $request->get('tgl_kembali'),
+                
+                'tgl_pinjam' => $this->getDateNow(),
+                'tgl_kembali' => $this->getDateBack(),
+
+                
+                //  AKTIFKAN COMMENT UNTUK TANGGAL YANG DAPAT DIRUBAH PADA INSPECT ELEMENT 4
+                // 'tgl_pinjam' => $request->get('tgl_pinjam'),
+                // 'tgl_kembali' => $request->get('tgl_kembali'),
+
                 'buku_id' => $request->get('buku_id'),
                 'anggota_id' => $request->get('anggota_id'),
                 'ket' => $request->get('ket'),
@@ -154,8 +178,11 @@ class TransaksiController extends Controller
     public function update(Request $request, $id)
     {
         $transaksi = Transaksi::find($id);
-
-        $transaksi->update([
+        // PENAMBAHAN IF UNTUK VERIFIKASI TANGGAL PEMINJAMAN
+        // HAPUS IF UNTUK MENGHAPUS VERIFIKASI TANGGAL PEMINJAMAN
+        if($this->getDateNow() < $transaksi->tgl_kembali){
+           
+            $transaksi->update([
                 'status' => 'kembali'
                 ]);
 
@@ -163,9 +190,9 @@ class TransaksiController extends Controller
                         ->update([
                             'jumlah_buku' => ($transaksi->buku->jumlah_buku + 1),
                             ]);
-
         alert()->success('Berhasil.','Data telah diubah!');
-        return redirect()->route('transaksi.index');
+        }
+                return redirect()->route('transaksi.index');
     }
 
     /**
