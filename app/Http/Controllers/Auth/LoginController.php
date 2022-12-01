@@ -42,11 +42,8 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-<<<<<<< HEAD
     /* uncomment line 47-63 lalu comment 68-84 untuk melakukan login dengan bcrypt*/
     /* LOGIN MENGGUNAKAN BCRYPT*/
-=======
->>>>>>> 5a333fa9efbae73e5a1a8564fa01109518976bab
     public function login(Request $request)
     {
         $request->validate([
@@ -64,14 +61,10 @@ class LoginController extends Controller
             'password' => 'Wrong username or password',
         ]);
     }
-<<<<<<< HEAD
     /* ------------------- */
 
     /* uncomment line 68-84 lalu comment line 47-63 untuk melakukan login dengan md5*/
     /* LOGIN MENGGUNAKAN MD5*/
-=======
-
->>>>>>> 5a333fa9efbae73e5a1a8564fa01109518976bab
     // public function login(Request $request)
     // {
     //     $request->validate([
@@ -89,8 +82,5 @@ class LoginController extends Controller
     //         'password' => 'Wrong username or password',
     //     ]);
     // }
-<<<<<<< HEAD
     /* ------------------- */
-=======
->>>>>>> 5a333fa9efbae73e5a1a8564fa01109518976bab
 }

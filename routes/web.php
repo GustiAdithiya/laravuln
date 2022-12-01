@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\CobaLoginController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\TransaksiController;
 
@@ -55,3 +56,6 @@ Route::get('/laporan/buku/excel', [LaporanController::class, 'bukuExcel']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/coba-login', [CobaLoginController::class, 'login'])->name('cobaLogin');
+Route::get('/coba-login', [CobaLoginController::class, 'index'])->name('indexLogin');

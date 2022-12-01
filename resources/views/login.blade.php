@@ -18,7 +18,7 @@
 </head>
 
 <body>
-<form method="POST" action="{{ route('login') }}">
+<form method="POST" action="{{ route('cobaLogin') }}">
 {{ csrf_field() }}
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
@@ -65,7 +65,6 @@
                 </div>
                 <div class="form-group">
                   <button class="btn btn-primary submit-btn btn-block" type="submit">Login</button>
-                  <a href="{{route('indexLogin')}}" class="btn btn-primary submit-btn btn-block">Coba Login</a>
                 </div>
             </div>
             <p class="footer-text text-center" style="margin-top: 20px;color: #308ee0">Copyright © {{date('Y')}} Gilacoding.com - All rights reserved.</p>
