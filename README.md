@@ -7,9 +7,9 @@ Instalation
 - composer install --ignore-platform-reqs
 - php artisan key:generate
 - Buat DB sesuai dengan .env (dengan nama "laravel")
-- php artisan migrate 
-- php artisan db:seed
-- php artisan optimize (optional)
+- php artisan migrate (untuk membuat tabel-tabel)
+- php artisan db:seed (untuk mengisi data pada tabel)
+- php artisan optimize (optional) (clear cache laravel)
 - php artisan serve
 
 
@@ -19,10 +19,10 @@ Account :
 
 
 Task :
-validasi login ✓
-penambahan hasil pencarian script ✓
-penambahan validasi tapi yang salah ✓
-encrypt nama gambar, dikasih saat upload tanggal bulan tahun (log)
-penambahan salt pada enkripsi ✓
-read only button pada saat waktu habis
-akses query
+- validasi login ✓
+- penambahan hasil pencarian script ✓
+- penambahan validasi tapi yang salah ✓
+- encrypt nama gambar, dikasih saat upload tanggal bulan tahun (log)
+- penambahan salt pada enkripsi ✓
+- read only button pada saat waktu habis
+- akses query
