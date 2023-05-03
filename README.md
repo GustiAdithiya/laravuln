@@ -26,3 +26,6 @@ Task :
 - penambahan salt pada enkripsi ✓
 - read only button pada saat waktu habis
 - akses query
+
+Rule :
+https://docs.google.com/document/d/1UTJOUKu_2O_oQuifDNFckpo8WMpORvAg5I2bQ1GAsRs/edit?usp=sharing
