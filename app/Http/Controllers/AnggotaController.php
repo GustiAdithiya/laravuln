@@ -109,14 +109,14 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {   
-        // $brilian = Crypt::decryptString("eyJpdiI6Ikp3Mlh3cVhVMDZjcFh3N2hkNG1BMnc9PSIsInZhbHVlIjoib3RDV2k3S0M2cmYvVEQ0WkdjV0lPUT09IiwibWFjIjoiMjRkYjM0ZmE3NTdmNjBkMmIzZDkxNDgwNzdjYzg3ZjRjOGFmYzFkOGZiOWY5OTBhZDBhNWIwNDYyODAwOTk3NSIsInRhZyI6IiJ900000000");
+        // $contoh = Crypt::decrypt("eyJpdiI6Ikp3Mlh3cVhVMDZjcFh3N2hkNG1BMnc9PSIsInZhbHVlIjoib3RDV2k3S0M2cmYvVEQ0WkdjV0lPUT09IiwibWFjIjoiMjRkYjM0ZmE3NTdmNjBkMmIzZDkxNDgwNzdjYzg3ZjRjOGFmYzFkOGZiOWY5OTBhZDBhNWIwNDYyODAwOTk3NSIsInRhZyI6IiJ900000000");
         // -- HAPUS KOMEN KODE BERIKUT UNTUK MENERAPKAN ENKRIPSI PADA ID DI URL --
-        // $getId = Crypt::decrypt($id);
-        // if((Auth::user()->level == 'user') && (Auth::user()->id != $getId)) {
+        // $id = Crypt::decrypt($id);
+        // if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
         //         Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
         //         return redirect()->to('/');
         // }
-        // $data = Anggota::findOrFail($getId);
+        // $data = Anggota::findOrFail($id);
         
         if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
                 Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
