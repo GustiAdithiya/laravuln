@@ -86,6 +86,18 @@ class UserController extends Controller
         //     'username' => 'required|string|max:20|unique:users',
         //     'email' => 'required|string|email|max:255|unique:users',
         //     'password' => 'required|string|min:8|confirmed',
+        /*      atau lebih ketat lagi
+                'password' => [
+                        'required',
+                        Password::min(8)
+                            ->letters()
+                            ->mixedCase()
+                            ->numbers()
+                            ->symbols()
+                            ->uncompromised()
+                    ],
+                    'password_confirmation' => 'required|same:password'
+        */
         //     'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
         /* ------------------------------ */
@@ -107,9 +119,9 @@ class UserController extends Controller
             $gambar = NULL;
         } else {
             $file = $request->file('gambar');
-            $dt = Carbon::now();
-            $acak  = $file->getClientOriginalExtension();
-            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
+            $getTime = Carbon::now();
+            $getExtension  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$getTime->format('Y-m-d-H-i-s').'.'.$getExtension; 
             $request->file('gambar')->move("images/user", $fileName);
             $gambar = $fileName;
         }
