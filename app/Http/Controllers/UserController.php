@@ -120,10 +120,16 @@ class UserController extends Controller
         } else {
             $file = $request->file('gambar');
             $getTime = Carbon::now();
-            $getExtension  = $file->getClientOriginalExtension();
+            $getExtension  = $file->extension(); // getClientOriginalName and getClientOriginalExtension methods are considered unsafe
             $fileName = rand(11111,99999).'-'.$getTime->format('Y-m-d-H-i-s').'.'.$getExtension; 
+            //bisa juga
+            /*
+            $fileName = $file->hashName(); // Generate a unique, random name...
+            $fileName = $fileName.'.'.$getExtension; 
+            */
             $request->file('gambar')->move("images/user", $fileName);
             $gambar = $fileName;
+            
         }
 
         User::create([
